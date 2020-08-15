@@ -1,3 +1,3 @@
 <?php 
-$salt = 'ee35f9ac1636e830a743f49b75c18de047fe7b44';
+$salt = 'cfb4dc005a79b9eaa1790ddc3689f95d4adcb9c6';
 ?>

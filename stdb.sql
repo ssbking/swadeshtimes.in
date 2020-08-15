@@ -1,51 +1,55 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta name="author" content="php enter" />
-  <meta http-equiv="content-type" content="text/html; charset=us-ascii" />
-  <link href="css/styles.css" rel="stylesheet" type="text/css" />
-  <title></title>
-</head>
-<body>
-<center>
-  <table width="70%" align="center" border="0">
-    <tr>
-      <td align="center" width="120" height="100px"></td>
-    </tr>
-  </table>
-<div id="incral">
-    <table width="80%" align="center" border="0">
-      <tr>
-        <td align="center">
-          <h3><img src="css/icon.png" />&nbsp;&nbsp;&nbsp;Install PHP Enter - Step 3</h3>MySQL Database
-          Server<br />
-        </td>
-      </tr>
-    </table>
-	<?php
-require_once('../admin/config.php');
-include ('../classes/adodb/adodb.inc.php');
-$dbdriver = "mysqli";
-$conn = ADONewConnection($dbdriver);
-$conn->Connect($server,$user,$password,$database);
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Aug 15, 2020 at 04:32 PM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
 
-$sql = "CREATE TABLE IF NOT EXISTS `abcoption` (
-  `optionid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `stdb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `abcoption`
+--
+
+DROP TABLE IF EXISTS `abcoption`;
+CREATE TABLE IF NOT EXISTS `abcoption` (
+  `optionid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nameopt` varchar(255) NOT NULL,
   `valueopt` text,
   `module` tinyint(1) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`optionid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
+) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 
-$sql2 = "INSERT INTO `abcoption` (`optionid`, `nameopt`, `valueopt`, `module`, `active`) VALUES
+--
+-- Dumping data for table `abcoption`
+--
+
+INSERT INTO `abcoption` (`optionid`, `nameopt`, `valueopt`, `module`, `active`) VALUES
 (1, 'sitetitle', 'World News', 0, 0),
 (2, 'metadesc', 'World / International News - Get latest breaking news & top stories today in United States (US), Europe, Middle East and Americas.', 0, 0),
 (3, 'keywords', 'news, headline, headlines, technology, latest news, tech news, world news', 0, 0),
-(4, 'sitepath', 'http://localhost/phpenterpro', 0, 0),
+(4, 'sitepath', '', 0, 0),
 (5, 'language', 'english', 0, 0),
 (6, 'caching', '0', 0, 0),
 (7, 'themes', 'classic', 0, 0),
-(8, 'sitemail', 'admin@example.com', 0, 0),
+(8, 'sitemail', 'shubhambohara09@gmail.com', 0, 0),
 (9, 'sitedisabled', '2', 0, 0),
 (10, 'rewritemod', '1', 0, 0),
 (11, 'toplinks', '7', 0, 0),
@@ -88,8 +92,16 @@ $sql2 = "INSERT INTO `abcoption` (`optionid`, `nameopt`, `valueopt`, `module`, `
 (48, 'svalue', '0', 0, 0),
 (49, 'secret', '0', 0, 0),
 (50, 'logotext', 'phpEnter', 0, 0),
-(51, 'fromail', 'admin@example.com', 0, 0);";
-$sql3 = "CREATE TABLE IF NOT EXISTS `categori` (
+(51, 'fromail', 'admin@example.com', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categori`
+--
+
+DROP TABLE IF EXISTS `categori`;
+CREATE TABLE IF NOT EXISTS `categori` (
   `catid` int(11) NOT NULL AUTO_INCREMENT,
   `parent` int(11) NOT NULL DEFAULT '1',
   `cord` tinyint(1) NOT NULL DEFAULT '0',
@@ -97,9 +109,13 @@ $sql3 = "CREATE TABLE IF NOT EXISTS `categori` (
   `seoname` text COLLATE utf8_unicode_ci,
   `cuscat` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`catid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1; ";
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-$sql4 = "INSERT INTO `categori` (`catid`, `parent`, `cord`, `name`, `seoname`, `cuscat`) VALUES
+--
+-- Dumping data for table `categori`
+--
+
+INSERT INTO `categori` (`catid`, `parent`, `cord`, `name`, `seoname`, `cuscat`) VALUES
 (1, 1, 0, 'World News', 'World_News', '0'),
 (2, 2, 0, 'Business', 'Business', '0'),
 (3, 3, 0, 'Tech', 'Tech', '0'),
@@ -109,9 +125,16 @@ $sql4 = "INSERT INTO `categori` (`catid`, `parent`, `cord`, `name`, `seoname`, `
 (7, 7, 0, 'Entertainment', 'Entertainment', '0'),
 (9, 9, 0, 'Sports', 'Sports', '0'),
 (10, 10, 0, 'Science', 'Science', '0'),
-(11, 7, 1, 'Movies', 'Movies', '0');";
+(11, 7, 1, 'Movies', 'Movies', '0');
 
-$sql5 = "CREATE TABLE IF NOT EXISTS `cpadmin` (
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cpadmin`
+--
+
+DROP TABLE IF EXISTS `cpadmin`;
+CREATE TABLE IF NOT EXISTS `cpadmin` (
   `ausid` int(11) NOT NULL AUTO_INCREMENT,
   `ausername` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `apassword` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
@@ -119,10 +142,23 @@ $sql5 = "CREATE TABLE IF NOT EXISTS `cpadmin` (
   PRIMARY KEY (`ausid`),
   UNIQUE KEY `Username` (`ausername`),
   UNIQUE KEY `Email` (`aemail`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1";
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `cpadmin`
+--
 
-$sql6 = "CREATE TABLE IF NOT EXISTS `newser` (
+INSERT INTO `cpadmin` (`ausid`, `ausername`, `apassword`, `aemail`) VALUES
+(1, 'stmasteradmin', '71596aadda1232a9036b62cdddbc731a', 'shubhambohara09@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `newser`
+--
+
+DROP TABLE IF EXISTS `newser`;
+CREATE TABLE IF NOT EXISTS `newser` (
   `newsid` int(11) NOT NULL AUTO_INCREMENT,
   `main` tinyint(1) NOT NULL DEFAULT '0',
   `univer` varchar(16) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
@@ -141,16 +177,22 @@ $sql6 = "CREATE TABLE IF NOT EXISTS `newser` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `shortdesc` text COLLATE utf8_unicode_ci,
   `longdesc` text COLLATE utf8_unicode_ci,
-  `commno` int(11) unsigned NOT NULL DEFAULT '0',
-  `rating` int(10) unsigned NOT NULL DEFAULT '0',
-  `total_rating` int(10) unsigned NOT NULL DEFAULT '0',
-  `total_ratings` int(10) unsigned NOT NULL DEFAULT '0',
+  `commno` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `rating` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `total_rating` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `total_ratings` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `hits` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`newsid`),
-  FULLTEXT KEY `title` (`title`,`shortdesc`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1";
+  PRIMARY KEY (`newsid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-$sql7 = "CREATE TABLE IF NOT EXISTS `reviews` (
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+DROP TABLE IF EXISTS `reviews`;
+CREATE TABLE IF NOT EXISTS `reviews` (
   `revid` int(11) NOT NULL AUTO_INCREMENT,
   `comrev` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `idrev` varchar(16) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
@@ -164,10 +206,16 @@ $sql7 = "CREATE TABLE IF NOT EXISTS `reviews` (
   `comdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `comment` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`revid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1";
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
 
-$sql8 = "CREATE TABLE IF NOT EXISTS `users` (
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
   `usid` int(11) NOT NULL AUTO_INCREMENT,
   `privilege` tinyint(1) NOT NULL DEFAULT '2',
   `fullname` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
@@ -185,72 +233,18 @@ $sql8 = "CREATE TABLE IF NOT EXISTS `users` (
   `lastime` datetime DEFAULT NULL,
   PRIMARY KEY (`usid`),
   UNIQUE KEY `Email` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1";
-$result = $conn->Execute($sql);
-if ($result == false) {
-	print 'error'  . $conn->ErrorMsg() . '<br>';
-}
-else {
-	echo '';
-}
-$result2 = $conn->Execute($sql2);
-if ($result2 == false) {
-	print 'error'  . $conn->ErrorMsg() . '<br>';
-}
-else {
-	echo '';
-}
-$result3 = $conn->Execute($sql3);
-if ($result3 == false) {
-	print 'error'  . $conn->ErrorMsg() . '<br>';
-}
-else {
-	echo '';
-}
-$result4= $conn->Execute($sql4);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-if ($result4 == false) {
-	print 'error'  . $conn->ErrorMsg() . '<br>';
-}
-else {
-	echo '';
-}
-$result5 = $conn->Execute($sql5);
+--
+-- Indexes for dumped tables
+--
 
-if ($result5 == false) {
-	print 'error'  . $conn->ErrorMsg() . '<br>';
-}
-else {
-	echo '';
-}
-$result6 = $conn->Execute($sql6);
-if ($result6 == false) {
-	print 'error'  . $conn->ErrorMsg() . '<br>';
-}
-else {
-	echo '';
-}
-$result7 = $conn->Execute($sql7);
-if ($result7 == false) {
-	print 'error'  . $conn->ErrorMsg() . '<br>';
-}
-else {
-	echo '';
-}
-$result8 = $conn->Execute($sql8);
-if ($result8 == false) {
-	print 'error'  . $conn->ErrorMsg() . '<br>';
-}
-else {
-	echo '';
-}
-?>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Database tables successfully created. <a href="install3.php"><b>Step 4</b></a>
-</div>
-  <table width="100%" height="422px"  align="center" border="0">
-    <tr>
-      <td align="center" valign="bottom"><a href="http://phpenter.net"><font size="1">powered by phpenter.net</font></a></td>
-    </tr>
-  </table>
-</body>
-</html>
+--
+-- Indexes for table `newser`
+--
+ALTER TABLE `newser` ADD FULLTEXT KEY `title` (`title`,`shortdesc`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

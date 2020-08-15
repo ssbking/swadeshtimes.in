@@ -1,6 +1,6 @@
 <?php 
 $server = 'localhost';
-$user = 'root';
-$password = 'testpass';
-$database = 'phpenter';
+$user = 'stadmin';
+$password = 'Rootkill4stadmin';
+$database = 'stdb';
 ?>
