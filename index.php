@@ -22,9 +22,15 @@ include('includes/config.php');
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
 
+    <!-- links for pwa -->
+    <script src="js/index.js" defer></script>
+    <link rel="manifest" href="manifest.webmanifest">
+
   </head>
 
   <body>
+  <!-- un-check the button blow to enable add to homescreen prompt -->
+  <!-- <button class="add-button">Add to home screen</button> -->
 
     <!-- Navigation -->
    <?php include('includes/header.php');?>
@@ -110,7 +116,7 @@ while ($row=mysqli_fetch_array($query)) {
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
- 
+    <button class="add-button">Add to home screen</button>
 </head>
   </body>
 

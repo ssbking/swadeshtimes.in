@@ -1,0 +1,15 @@
+{
+    "background_color": "blue",
+    "description": "swadeshtimes.in is a news portal",
+    "display": "fullscreen",
+    "icons": [
+      {
+        "src": "images/logo192x192.png",
+        "sizes": "192x122",
+        "type": "image/png"
+      }
+    ],
+    "name": "swadeshtimes.in",
+    "short_name": "SDtimes",
+    "start_url": "/index.php"
+  }
