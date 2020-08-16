@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32, created on 2020-08-15 16:11:37
+/* Smarty version 3.1.32, created on 2020-08-15 18:33:56
   from 'C:\wamp64\www\swadeshtimes.in\themes\classic\maindir.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5f380939658fd5_22509110',
+  'unifunc' => 'content_5f382a94260e88_33295963',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f380939658fd5_22509110 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f382a94260e88_33295963 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\wamp64\\www\\swadeshtimes.in\\libs\\plugins\\modifier.replace.php','function'=>'smarty_modifier_replace',),));
 ?><nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <div class="container">
