@@ -1,168 +1,142 @@
 <?php
-/* * ************************************
-* PHP Enter is licensed under the
-* GNU General Public License version 2
-* ************************************* */
-include ('header.php');
-?>
-<div id=vforms>
-<div id="cconfig">Configuration</div><br />
-<?php
-if(isset($_POST['submit'])) {
- $sitedisabled = $_POST['sitedisabled'];
- $rewritemod = $_POST['rewritemod'];
- $sitetitle = $_POST['sitetitle'];
- $language = $_POST['language'];
- $themes = $_POST['themes'];
- $sitepath = $_POST['sitepath'];
- $sitemail = $_POST['sitemail'];
- $ntext = $_POST['ntext'];
- $paginate = $_POST['paginate'];
- if(get_magic_quotes_gpc()) {
-  $sitedisabled = stripslashes($sitedisabled);
-  $rewritemod = stripslashes($rewritemod);
-  $sitetitle = stripslashes($sitetitle);
-  $language = stripslashes($language);
-  $themes = stripslashes($themes);
-  $sitepath = stripslashes($sitepath);
-  $sitemail = stripslashes($sitemail);
-  $ntext = stripslashes($ntext);
-  $paginate = stripslashes($paginate);
- }
- $name = array($sitedisabled,$rewritemod,$sitetitle,$language,$themes,$sitepath,$sitemail,$ntext,$paginate);
- foreach($name as $name) {
-  if(strlen($name) < 1) {
-   echo "<center>Field must be at least 1 characters long: <a href='index.php'>Go Back</a></center>";
-   die();
+ session_start();
+//Database Configuration File
+include('includes/config.php');
+//error_reporting(0);
+if(isset($_POST['login']))
+  {
+ 
+    // Getting username/ email and password
+     $uname=$_POST['username'];
+    $password=$_POST['password'];
+    // Fetch data from database on the basis of username/email and password
+$sql =mysqli_query($con,"SELECT AdminUserName,AdminEmailId,AdminPassword FROM tbladmin WHERE (AdminUserName='$uname' || AdminEmailId='$uname')");
+ $num=mysqli_fetch_array($sql);
+if($num>0)
+{
+$hashpassword=$num['AdminPassword']; // Hashed password fething from database
+//verifying Password
+if (password_verify($password, $hashpassword)) {
+$_SESSION['login']=$_POST['username'];
+    echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
+  } else {
+echo "<script>alert('Wrong Password');</script>";
+ 
   }
- }
- $sql = $conn->Prepare('UPDATE abcoption SET valueopt = '.$conn->qstr($sitedisabled).' WHERE optionid = '.$conn->qstr("9").'');
- if($conn->Execute($sql) === false) {
-  print '<div class="error">'.$conn->ErrorMsg().'</div>';
- }
- $sql2 = $conn->Prepare('UPDATE abcoption SET valueopt = '.$conn->qstr($rewritemod).' WHERE optionid = '.$conn->qstr("10").'');
- if($conn->Execute($sql2) === false) {
-  print '<div class="error">'.$conn->ErrorMsg().'</div>';
- }
- $sql3 = $conn->Prepare('UPDATE abcoption SET valueopt = '.$conn->qstr($sitetitle).' WHERE optionid = '.$conn->qstr("1").'');
- if($conn->Execute($sql3) === false) {
-  print '<div class="error">'.$conn->ErrorMsg().'</div>';
- }
- $sql4 = $conn->Prepare('UPDATE abcoption SET valueopt = '.$conn->qstr($language).' WHERE optionid = '.$conn->qstr("5").'');
- if($conn->Execute($sql4) === false) {
-  print '<div class="error">'.$conn->ErrorMsg().'</div>';
- }
- $sql5 = $conn->Prepare('UPDATE abcoption SET valueopt = '.$conn->qstr($themes).' WHERE optionid = '.$conn->qstr("7").'');
- if($conn->Execute($sql5) === false) {
-  print '<div class="error">'.$conn->ErrorMsg().'</div>';
- }
- $sql6 = $conn->Prepare('UPDATE abcoption SET valueopt = '.$conn->qstr($sitepath).' WHERE optionid = '.$conn->qstr("4").'');
- if($conn->Execute($sql6) === false) {
-  print '<div class="error">'.$conn->ErrorMsg().'</div>';
- }
- $sql7 = $conn->Prepare('UPDATE abcoption SET valueopt = '.$conn->qstr($sitemail).' WHERE optionid = '.$conn->qstr("8").'');
- if($conn->Execute($sql7) === false) {
-  print '<div class="error">'.$conn->ErrorMsg().'</div>';
- }
- $sql8 = $conn->Prepare('UPDATE abcoption SET valueopt = '.$conn->qstr($ntext).' WHERE optionid = '.$conn->qstr("12").'');
- if($conn->Execute($sql8) === false) {
-  print '<div class="error">'.$conn->ErrorMsg().'</div>';
- }
- $sql9 = $conn->Prepare('UPDATE abcoption SET valueopt = '.$conn->qstr($paginate).' WHERE optionid = '.$conn->qstr("24").'');
- if($conn->Execute($sql9) === false) {
-  print '<div class="error">'.$conn->ErrorMsg().'</div>';
- }
- echo "<div class ='info'>Changes Saved Successfully</div>";
-?>
-<?php
-} 
- $br = $conn->Execute('SELECT username, email FROM users WHERE active = ?',array("3"));
- if($br) {
-  if($br->fields > 0) {
-   $numrows = $br->PO_RecordCount("users");
-   echo "<div class='error'><a href='user.php'>Members Waiting For Approval [".$numrows."]</a></div><br /><br />";
+}
+//if username or email not found in database
+else{
+echo "<script>alert('User not registered with us');</script>";
   }
- }
+ 
+}
 ?>
-<form method="post" action="index.php">
-Enable Maintenance Mode<br />
-<?php if($sitedisabled == 1) { ?>
-<select style="background:#FFF6C1;" class="input" name="sitedisabled">
-<option value='1'>- Website is in maintenance mode</option>
-<option style="background:#ffffff;" value='1'>---- Maintenance mode</option>
-<option style="background:#ffffff;" value='2'>------ Production mode</option>
-</select>
-<?php } ?>
-<?php if($sitedisabled == 2) { ?>
-<select style="background:#EEFFE3;" class="input" name="sitedisabled">
-<option value='2'>-- Website in production mode</option>
-<option style="background:#ffffff;" value='1'>---- Maintenance mode</option>
-<option style="background:#ffffff;" value='2'>------ Production mode</option>
-</select>
-<?php } ?>
-<br /><br />
-Friendly URLs<br />
-Requirements: Apache web server with the mod_rewrite module installed.<br />
-<?php if($rewritemod == 1) { ?>
-<select style="background:#EEFFE3;" class="input" name="rewritemod">
-<option value='1'>-- Friendly URLs Enabled</option>
-<option style="background:#ffffff;" value='1'>---- Yes</option>
-<option style="background:#ffffff;" value='2'>------ No</option>
-</select>                               
-<?php } ?>
-<?php if($rewritemod == 2) { ?>
-<select style="background:#FFF6C1;" class="input" name="rewritemod">
-<option value='2'>-- Friendly URLs Disabled</option>
-<option style="background:#ffffff;" value='1'>---- Yes</option>
-<option style="background:#ffffff;" value='2'>------ No</option>
-</select>
-<?php } ?>
-<br /><br />
-WebSite Name<br />
-<input class="input" type="text" name="sitetitle" value="<?php echo $sitetitle; ?>" />
-<br /><br />
-Language<br />
-<input class="input" name="language" value="<?php echo $language; ?>" />
-<br /><br />
-Theme <a href="http://www.phpenter.net/shop.php" target="_blank">Themes for version 5.3.</a><br />
-<input class="input" type="text" name="themes" value="<?php echo $themes; ?>" />
-<br /><br />
-URL (http://www.example.com or http://www.example.com/folder)
-<br /><input class="input" type="text" name="sitepath" value="<?php echo $sitepath; ?>" />
-<br /><br />
-System Email<br />
-<input class="input" type="text" name="sitemail" value="<?php echo $sitemail; ?>" />
-<br /><br />
-Text Direction<br />
-<?php if($frontext == "ltr") { ?>
-<select style="background:#EEFFE3;" class="input" name="ntext">
-<option value='ltr'>- Left To Right</option>
-<option style="background:#ffffff;" value='ltr'>---- Left To Right</option>
-<option style="background:#ffffff;" value='rtl'>------ Right to Left</option>
-</select>
-<?php } ?>
-<?php if($frontext == "rtl") { ?>
-<select style="background:#EEFFE3;" class="input" name="ntext">
-<option value='rtl'>-- Right to Left</option>
-<option style="background:#ffffff;" value='ltr'>---- Left To Right</option>
-<option style="background:#ffffff;" value='rtl'>------ Right to Left</option>
-</select>
-<?php } ?>
-<br /><br />
-Number of articles on category, serach and profile page<br />
-<input class="input" type="text" name="paginate" value="<?php echo $paginate; ?>" />
-<br /><br />
-<input type="submit" class="topicbuton" name="submit" value="Submit" />
-<br /><br />
-<br /><br />
-</form>
-</div>
-</div>
-</div>
-<?php
-include ('footer.php');
-$conn->Close();
-/**************************************
-* Revision: v.beta
-***************************************/
-?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="News Portal.">
+        <meta name="author" content="PHPGurukul">
+
+
+        <!-- App title -->
+        <title>News Portal | Admin Panel</title>
+
+        <!-- App css -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+
+        <script src="assets/js/modernizr.min.js"></script>
+
+    </head>
+
+
+    <body class="bg-transparent">
+
+        <!-- HOME -->
+        <section>
+            <div class="container-alt">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="wrapper-page">
+
+                            <div class="m-t-40 account-pages">
+                                <div class="text-center account-logo-box">
+                                    <h2 class="text-uppercase">
+                                        <a href="index.html" class="text-success">
+                                            <span><img src="assets/images/logo.png" alt="" height="56"></span>
+                                        </a>
+                                    </h2>
+                                    <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
+                                </div>
+                                <div class="account-content">
+                                    <form class="form-horizontal" method="post">
+
+                                        <div class="form-group ">
+                                            <div class="col-xs-12">
+                                                <input class="form-control" type="text" required="" name="username" placeholder="Username or email" autocomplete="off">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-xs-12">
+                                                <input class="form-control" type="password" name="password" required="" placeholder="Password" autocomplete="off">
+                                            </div>
+                                        </div>
+
+
+                     
+                                        <div class="form-group account-btn text-center m-t-10">
+                                            <div class="col-xs-12">
+                                                <button class="btn w-md btn-bordered btn-danger waves-effect waves-light" type="submit" name="login">Log In</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                    <div class="clearfix"></div>
+
+                                </div>
+                            </div>
+                            <!-- end card-box-->
+
+
+                    
+
+                        </div>
+                        <!-- end wrapper -->
+
+                    </div>
+                </div>
+            </div>
+          </section>
+          <!-- END HOME -->
+
+        <script>
+            var resizefunc = [];
+        </script>
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/detect.js"></script>
+        <script src="assets/js/fastclick.js"></script>
+        <script src="assets/js/jquery.blockUI.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/jquery.scrollTo.min.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+    </body>
+</html>
