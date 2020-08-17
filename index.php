@@ -1,69 +1,117 @@
-<?php session_start();
-/**********************************************************************
-*  Copyright notice PHP Enter
-*
-*  (c) 2011 Predrag Rukavina - admin[at]phpenter[dot]net
-*  All rights reserved
-*
-*  This script is part of the PHP Enter project. 
-*  The PHP Enter project is free software; you can redistribute it and/or
-*  modify it under the terms of the GNU General Public License
-*  as published by the Free Software Foundation; either version 2
-*  of the License, or (at your option) any later version.
-*
-*  This program is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  You should have received a copy of the GNU General Public License
-*  along with this program; if not, write to the Free Software
-*  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-*  MA  02110-1301, USA.
-*
-*  This copyright notice MUST appear in all copies of the script!
-************************************************************************/
-require_once ('settings.php');
-$ac = $conn->Execute('SELECT * FROM categori ORDER BY name ASC');
-if(!$ac)
- print $conn->ErrorMsg();
-else
- while(!$ac->EOF) {
-  if($ac->fields['cord'] == 0) {
-   $categori[] = $ac->fields;
-  } else {
-   $subcat[] = $ac->fields;
-  }
-  $ac->MoveNext();
- }
-$ad = $conn->execute('SELECT * FROM newser WHERE main = '.$conn->qstr('0').' or main = '.$conn->qstr('2').' ORDER BY univer DESC LIMIT 32');
-if(!$ad)
- print $conn->ErrorMsg();
-else
- while(!$ad->EOF) {
-   $image = $ad->fields['image'];
-   if($image == true){
-   $newser2[] = $ad->fields;
-   }
-  $newser[] = $ad->fields;
-  $ad->MoveNext();
- }
-$ae = $conn->Execute('SELECT * FROM reviews ORDER BY revid DESC LIMIT 4');
-if(!$ae)
- print $conn->ErrorMsg();
-else
- while(!$ae->EOF) {
-  $reviews[] = $ae->fields;
-  $ae->MoveNext();
- }
-$smarty->caching = $caching;
-$smarty->assign('categori',@$categori);
-$smarty->assign('subcat',@$subcat);
-$smarty->assign('newser',@$newser);
-$smarty->assign('newser2',@$newser2);
-$smarty->assign('reviews',@$reviews);
-$smarty->display('main.php');
-######################################
-##index.php                     BETA##
-######################################
+<?php 
+session_start();
+include('includes/config.php');
+
+    ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>News Portal | Home Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/modern-business.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+   <?php include('includes/header.php');?>
+
+    <!-- Page Content -->
+    <div class="container">
+
+
+     
+      <div class="row" style="margin-top: 4%">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+          <!-- Blog Post -->
+<?php 
+     if (isset($_GET['pageno'])) {
+            $pageno = $_GET['pageno'];
+        } else {
+            $pageno = 1;
+        }
+        $no_of_records_per_page = 8;
+        $offset = ($pageno-1) * $no_of_records_per_page;
+
+
+        $total_pages_sql = "SELECT COUNT(*) FROM tblposts";
+        $result = mysqli_query($con,$total_pages_sql);
+        $total_rows = mysqli_fetch_array($result)[0];
+        $total_pages = ceil($total_rows / $no_of_records_per_page);
+
+
+$query=mysqli_query($con,"select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 order by tblposts.id desc  LIMIT $offset, $no_of_records_per_page");
+while ($row=mysqli_fetch_array($query)) {
 ?>
+
+          <div class="card mb-4">
+ <img class="card-img-top" src="admin/postimages/<?php echo htmlentities($row['PostImage']);?>" alt="<?php echo htmlentities($row['posttitle']);?>">
+            <div class="card-body">
+              <h2 class="card-title"><?php echo htmlentities($row['posttitle']);?></h2>
+                 <p><b>Category : </b> <a href="category.php?catid=<?php echo htmlentities($row['cid'])?>"><?php echo htmlentities($row['category']);?></a> </p>
+       
+              <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="btn btn-primary">Read More &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+              Posted on <?php echo htmlentities($row['postingdate']);?>
+           
+            </div>
+          </div>
+<?php } ?>
+       
+
+      
+
+          <!-- Pagination -->
+
+
+    <ul class="pagination justify-content-center mb-4">
+        <li class="page-item"><a href="?pageno=1"  class="page-link">First</a></li>
+        <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?> page-item">
+            <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>" class="page-link">Prev</a>
+        </li>
+        <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?> page-item">
+            <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?> " class="page-link">Next</a>
+        </li>
+        <li class="page-item"><a href="?pageno=<?php echo $total_pages; ?>" class="page-link">Last</a></li>
+    </ul>
+
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+      <?php include('includes/sidebar.php');?>
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+      <?php include('includes/footer.php');?>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+ 
+</head>
+  </body>
+
+</html>
