@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2020-08-16 08:27:35
+/* Smarty version 3.1.32, created on 2020-08-17 13:49:31
   from 'C:\wamp64\www\swadeshtimes.in\themes\classic\main.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5f38edf7310013_34138335',
+  'unifunc' => 'content_5f3a8aebb16c66_33769336',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3496bac9470ce0685cbc9de06f21a9edb65fa818' => 
     array (
       0 => 'C:\\wamp64\\www\\swadeshtimes.in\\themes\\classic\\main.php',
-      1 => 1597566452,
+      1 => 1597669581,
       2 => 'file',
     ),
   ),
@@ -22,40 +22,40 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:themes/".((string)$_smarty_tpl->tpl_vars[\'themes\']->value)."/footer.php' => 1,
   ),
 ),false)) {
-function content_5f38edf7310013_34138335 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f3a8aebb16c66_33769336 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\wamp64\\www\\swadeshtimes.in\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),1=>array('file'=>'C:\\wamp64\\www\\swadeshtimes.in\\libs\\plugins\\modifier.timeAgo.php','function'=>'smarty_modifier_timeAgo',),2=>array('file'=>'C:\\wamp64\\www\\swadeshtimes.in\\libs\\plugins\\modifier.truncate.php','function'=>'smarty_modifier_truncate',),3=>array('file'=>'C:\\wamp64\\www\\swadeshtimes.in\\libs\\plugins\\modifier.sortby.php','function'=>'smarty_modifier_sortby',),4=>array('file'=>'C:\\wamp64\\www\\swadeshtimes.in\\libs\\plugins\\function.counter.php','function'=>'smarty_function_counter',),));
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<meta name="ROBOTS" content="All" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="keywords" content="<?php echo $_smarty_tpl->tpl_vars['keywords']->value;?>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="ROBOTS" content="All" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="keywords" content="<?php echo $_smarty_tpl->tpl_vars['keywords']->value;?>
 " />
-<meta name="description" content="<?php echo $_smarty_tpl->tpl_vars['metadesc']->value;?>
+    <meta name="description" content="<?php echo $_smarty_tpl->tpl_vars['metadesc']->value;?>
 " />
-<link href="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
+    <link href="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
 /themes/<?php echo $_smarty_tpl->tpl_vars['themes']->value;?>
 /styles/images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
-<?php if ($_smarty_tpl->tpl_vars['frontext']->value == 'rtl') {?>
-<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
+    <?php if ($_smarty_tpl->tpl_vars['frontext']->value == 'rtl') {?>
+    <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
 /themes/<?php echo $_smarty_tpl->tpl_vars['themes']->value;?>
 /styles/rtl/bootstrap.min.css" />
-<?php } else { ?>
-<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
+    <?php } else { ?>
+    <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
 /themes/<?php echo $_smarty_tpl->tpl_vars['themes']->value;?>
 /styles/bootstrap.min.css" />
-<?php }?>
-<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
+    <?php }?>
+    <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
 /themes/<?php echo $_smarty_tpl->tpl_vars['themes']->value;?>
 /styles/font-awesome.css" />
-<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
+    <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
 /themes/<?php echo $_smarty_tpl->tpl_vars['themes']->value;?>
 /styles/basic.css" />
-<link rel="alternate" type="application/atom+xml" title="<?php echo $_smarty_tpl->tpl_vars['sitetitle']->value;?>
+    <link rel="alternate" type="application/atom+xml" title="<?php echo $_smarty_tpl->tpl_vars['sitetitle']->value;?>
  - RSS" href="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
 /rss.php" />
-<title><?php echo $_smarty_tpl->tpl_vars['sitetitle']->value;?>
+    <title><?php echo $_smarty_tpl->tpl_vars['sitetitle']->value;?>
 </title>
 </head> 
 <body>
