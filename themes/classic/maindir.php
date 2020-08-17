@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-lg navbar-dark bg-dark">
     <div class="container">
         {if $logoon == '2'}
-        <a class="navbar-brand" href="{$sitepath}">{$logotext}</a>
+        <a class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">{$logotext}</a>
         {/if}
         {if $logoon == '1'}
-        <a class="navbar-brand" href="/category/2/Business.html"><img src="{$sitepath}/themes/{$themes}/styles/images/logo.png" alt="{$sitetitle}" width="250" height="45" /></a>
+        <a class="navbar-brand navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><img src="{$sitepath}/themes/{$themes}/styles/images/logo.png" alt="{$sitetitle}" width="250" height="45" /></a>
         {/if}
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup2" aria-controls="navbarNavAltMarkup2" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -53,6 +53,15 @@
             </ul>
             {/if}
             </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup2">
+        <!-- this is a secon user menu -->
+        <ul><li>one</li>
+        ><li>one</li>
+        ><li>one</li>
+        ><li>one</li>
+        ><li>one</li>
+        </ul>
         </div>
     </div>
 </nav>

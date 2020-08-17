@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2020-08-17 13:49:34
+/* Smarty version 3.1.32, created on 2020-08-17 15:05:47
   from 'C:\wamp64\www\swadeshtimes.in\themes\classic\maindir.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5f3a8aee2172f0_09098964',
+  'unifunc' => 'content_5f3a9ccbd59093_50428584',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62100baa45c75c02d96029b3de37b81995766ec0' => 
     array (
       0 => 'C:\\wamp64\\www\\swadeshtimes.in\\themes\\classic\\maindir.php',
-      1 => 1597671084,
+      1 => 1597676738,
       2 => 'file',
     ),
   ),
@@ -20,22 +20,21 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f3a8aee2172f0_09098964 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f3a9ccbd59093_50428584 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\wamp64\\www\\swadeshtimes.in\\libs\\plugins\\modifier.replace.php','function'=>'smarty_modifier_replace',),));
-?><nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+?><nav class="navbar navbar-lg navbar-dark bg-dark">
     <div class="container">
         <?php if ($_smarty_tpl->tpl_vars['logoon']->value == '2') {?>
-        <a class="navbar-brand" href="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
-"><?php echo $_smarty_tpl->tpl_vars['logotext']->value;?>
+        <a class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><?php echo $_smarty_tpl->tpl_vars['logotext']->value;?>
 </a>
         <?php }?>
         <?php if ($_smarty_tpl->tpl_vars['logoon']->value == '1') {?>
-        <a class="navbar-brand" href="/category/2/Business.html"><img src="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
+        <a class="navbar-brand navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><img src="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
 /themes/<?php echo $_smarty_tpl->tpl_vars['themes']->value;?>
 /styles/images/logo.png" alt="<?php echo $_smarty_tpl->tpl_vars['sitetitle']->value;?>
 " width="250" height="45" /></a>
         <?php }?>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup2" aria-controls="navbarNavAltMarkup2" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -46,7 +45,7 @@ $_smarty_tpl->tpl_vars['caty']->index = -1;
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['caty']->value) {
 $_smarty_tpl->tpl_vars['caty']->index++;
-$__foreach_caty_7_saved = $_smarty_tpl->tpl_vars['caty'];
+$__foreach_caty_0_saved = $_smarty_tpl->tpl_vars['caty'];
 ?>
                 <?php $_smarty_tpl->_assignInScope('ifavaible', $_smarty_tpl->tpl_vars['caty']->total);?>
                 <?php ob_start();
@@ -95,7 +94,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </li>
             <?php }?>
             <?php
-$_smarty_tpl->tpl_vars['caty'] = $__foreach_caty_7_saved;
+$_smarty_tpl->tpl_vars['caty'] = $__foreach_caty_0_saved;
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
@@ -112,7 +111,7 @@ $_smarty_tpl->tpl_vars['morecat']->index = -1;
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['morecat']->value) {
 $_smarty_tpl->tpl_vars['morecat']->index++;
-$__foreach_morecat_9_saved = $_smarty_tpl->tpl_vars['morecat'];
+$__foreach_morecat_2_saved = $_smarty_tpl->tpl_vars['morecat'];
 ?>
             <?php ob_start();
 echo $_smarty_tpl->tpl_vars['toplinks']->value;
@@ -133,7 +132,7 @@ if ($_smarty_tpl->tpl_vars['morecat']->value['cord'] == 0 && $_smarty_tpl->tpl_v
             <?php }?>
             <?php }?>
             <?php
-$_smarty_tpl->tpl_vars['morecat'] = $__foreach_morecat_9_saved;
+$_smarty_tpl->tpl_vars['morecat'] = $__foreach_morecat_2_saved;
 }
 } else {
 ?>
@@ -145,6 +144,15 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </ul>
             <?php }?>
             </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup2">
+        <!-- this is a secon user menu -->
+        <ul><li>one</li>
+        ><li>one</li>
+        ><li>one</li>
+        ><li>one</li>
+        ><li>one</li>
+        </ul>
         </div>
     </div>
 </nav>
