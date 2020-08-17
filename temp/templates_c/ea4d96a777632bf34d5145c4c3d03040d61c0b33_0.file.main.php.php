@@ -1,26 +1,27 @@
 <?php
-/* Smarty version 3.1.32, created on 2020-08-17 13:07:38
+/* Smarty version 3.1.32, created on 2020-08-17 13:42:21
   from 'C:\wamp64\www\swadeshtimes.in\themes\PWA\main.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5f3a811a502461_14577883',
+  'unifunc' => 'content_5f3a893d4614f7_33022195',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ea4d96a777632bf34d5145c4c3d03040d61c0b33' => 
     array (
       0 => 'C:\\wamp64\\www\\swadeshtimes.in\\themes\\PWA\\main.php',
-      1 => 1597669636,
+      1 => 1597671542,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:themes/".((string)$_smarty_tpl->tpl_vars[\'themes\']->value)."/sidebar.php' => 1,
   ),
 ),false)) {
-function content_5f3a811a502461_14577883 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f3a893d4614f7_33022195 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,32 +61,25 @@ function content_5f3a811a502461_14577883 (Smarty_Internal_Template $_smarty_tpl)
 </head> 
 <body>
 
-<ons-splitter>
-  <ons-splitter-side id="menu" side="right" width="220px" collapse swipeable>
-    <ons-page>
-      <ons-list>
-        <ons-list-item onclick="fn.load('home.html')" tappable>
-          Home
-        </ons-list-item>
-        <ons-list-item onclick="fn.load('cards.html')" tappable>
-          Cards
-        </ons-list-item>
-        <ons-list-item onclick="fn.load('settings.html')" tappable>
-          Settings
-        </ons-list-item>
-      </ons-list>
-    </ons-page>
-  </ons-splitter-side>
-  <ons-splitter-content>
-    <ons-navigator id="myNavigator" page="home.html"></ons-navigator>
-  </ons-splitter-content>
-</ons-splitter>
+<?php $_smarty_tpl->_subTemplateRender("file:themes/".((string)$_smarty_tpl->tpl_vars['themes']->value)."/sidebar.php", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+?>
+
 
 <template id="home.html">
   <ons-page>
     <ons-toolbar>
       <div class="center">
-        Splitter+Navigator
+      <?php if ($_smarty_tpl->tpl_vars['logoon']->value == '2') {?>
+        <a class="navbar-brand" href="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['logotext']->value;?>
+</a>
+        <?php }?>
+        <?php if ($_smarty_tpl->tpl_vars['logoon']->value == '1') {?>
+        <a class="navbar-brand" href="/category/2/Business.html"><img src="<?php echo $_smarty_tpl->tpl_vars['sitepath']->value;?>
+/themes/<?php echo $_smarty_tpl->tpl_vars['themes']->value;?>
+/styles/images/logo.png" alt="<?php echo $_smarty_tpl->tpl_vars['sitetitle']->value;?>
+" width="250" height="45" /></a>
+        <?php }?>
       </div>
       <div class="right">
         <ons-toolbar-button onclick="fn.open()">
@@ -109,6 +103,7 @@ function content_5f3a811a502461_14577883 (Smarty_Internal_Template $_smarty_tpl)
 </template>
 
 <template id="pageNav1.html">
+<!-- this page is served for search -->
   <ons-page id="pageNav1">
     <ons-toolbar>
       <div class="left">
@@ -123,9 +118,9 @@ function content_5f3a811a502461_14577883 (Smarty_Internal_Template $_smarty_tpl)
     </ons-toolbar>
 
     <div style="text-align: center">
-      <h1>Custom Page</h1>
+      <h1>Search Page</h1>
       <p>
-        <ons-input modifier="underbar" placeholder="Title" float></ons-input>
+        <ons-input modifier="underbar" placeholder="Query?" float></ons-input>
       </p>
       <ons-button onclick="customPush()">
         Push Page
@@ -134,7 +129,7 @@ function content_5f3a811a502461_14577883 (Smarty_Internal_Template $_smarty_tpl)
         Pop Page
       </ons-button>
     </div>
-
+<!-- search.php intragation -->
     <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
       Swipe left to open the menu!
     </p>
