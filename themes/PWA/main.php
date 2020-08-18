@@ -24,35 +24,7 @@
 
 
 <template id="home.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="center">
-      {if $logoon == '2'}
-        <a class="navbar-brand" href="{$sitepath}">{$logotext}</a>
-        {/if}
-        {if $logoon == '1'}
-        <a class="navbar-brand" href="/category/2/Business.html"><img src="{$sitepath}/themes/{$themes}/styles/images/logo.png" alt="{$sitetitle}" width="250" height="45" /></a>
-        {/if}
-      </div>
-      <div class="right">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-    </ons-toolbar>
-
-    <h2>Home</h2>
-    <div style="text-align: center">
-      <br>
-      <ons-button onclick="myNavigator.pushPage('pageNav1.html')">
-        Push Page
-      </ons-button>
-    </div>
-
-    <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
-      Swipe left to open the menu!
-    </p>
-  </ons-page>
+{include file="themes/$themes/home.php"}
 </template>
 
 <template id="pageNav1.html">
